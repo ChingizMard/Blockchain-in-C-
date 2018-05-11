@@ -2,6 +2,8 @@
 #define TIME_H
 #include <string>
 #include <ctime>
+#include <sstream>
+#include "lib/piscoha2.h"
 
 class Block
 {
@@ -12,7 +14,8 @@ class Block
         std::time_t _timestamp;     //Timestamp
     public:
         Block(const std::string data, const std::string previousHash);
-        std::string getData(); //Just a test method to check block creation.
+        std::string calculateHash(); //Hash the value of the block
+        std::string getData(); //Just a test method to check block creation
 };
 
 #endif
