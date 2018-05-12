@@ -11,6 +11,7 @@ bool ChingizChain::checkValidity()
 {
     Block currentBlock;
     Block previousBlock;
+    std::string target(difficulty, '0'); 
 
     for (unsigned int i = 1; i < blockchain.size(); i++){
         currentBlock = blockchain[i];
@@ -29,6 +30,12 @@ bool ChingizChain::checkValidity()
             std::cout << "Wrong previous block hash." << std::endl;
             return false;
         }
+
+        //Check if the block is mined
+        if(currentBlock.getHash().substr( 0, difficulty) != (target)) {
+            std::cout << "This block hasn't been mined" << std::endl;
+            return false;
+		}
     }
   
     return true;
