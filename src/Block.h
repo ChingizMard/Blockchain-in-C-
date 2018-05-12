@@ -13,9 +13,12 @@ class Block
         std::string _data;          //Content of the block
         std::time_t _timestamp;     //Timestamp
     public:
+        Block();
         Block(const std::string data, const std::string previousHash);
         std::string calculateHash(); //Hash the value of the block
-        std::string getData(); //Just a test method to check block creation
+        std::string getHash(); //
+        std::string getPreviousHash();
+        void printBlock();
 };
 
 #endif
