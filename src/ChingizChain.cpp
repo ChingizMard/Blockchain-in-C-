@@ -5,6 +5,7 @@
 
 //Static Variables
 std::vector<Block> ChingizChain::blockchain;
+int ChingizChain::difficulty = 4;
 
 bool ChingizChain::checkValidity()
 {

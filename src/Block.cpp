@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include "Block.h"
 
 Block::Block(){}
@@ -23,7 +24,7 @@ std::string Block::calculateHash(){
     //Convert t_time to string
     std::stringstream timestamp_ss;
     timestamp_ss << _timestamp;
-    std::string input = timestamp_ss.str() + _data + _previousHash;
+    std::string input = timestamp_ss.str() + _data + _previousHash + std::to_string(_nonce);
     std::string hash;
     picosha2::hash256_hex_string(input, hash); //Using the picosha2 for hashing. Link to library in URL
     return hash;
@@ -38,3 +39,15 @@ void Block::printBlock(){
 }
 
 
+void Block::mineBlock(int difficulty){
+    std::string target(difficulty, '0'); 
+    while(_hash.substr(0, difficulty) != target) {
+        _nonce ++;
+        _hash = calculateHash();
+    }
+    std::cout << "Block Mined!!! : "  <<  _hash << std::endl;
+}
+
+void Block::setData(std::string data){
+    _data = data;
+}
